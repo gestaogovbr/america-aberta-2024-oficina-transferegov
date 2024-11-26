@@ -1,2 +1,4 @@
-# america-aberta-2024-oficina-transferegov
-Materiais para a oficina de dados abertos do Transferegov no evento América Aberta 2024.
+# América Aberta: Oficina de dados abertos do TransfereGov
+
+Este repositório contém os materiais para uso na oficina de uso de dados abertos
+do TransfereGov no evento América Aberta 2024.
