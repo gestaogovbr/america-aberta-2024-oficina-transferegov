@@ -1,4 +1,5 @@
 .vscode
 .jekyll-cache
+.ipynb_checkpoints
 .env
 _site/
