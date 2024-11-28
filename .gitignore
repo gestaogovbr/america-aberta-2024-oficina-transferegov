@@ -1,1 +1,4 @@
 .vscode
+.jekyll-cache
+.env
+_site/
