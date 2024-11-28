@@ -1,0 +1,104 @@
+name: Build and deploy site
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  PYTHON_VERSION: "3.11"
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    name: Build site with Jekyll and JupyterLite
+    steps:
+      # Check out from Git
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      # Set up and use cache for Python dependencies
+      - name: Python dependencies cache
+        id: python-dependencies-cache
+        uses: actions/cache@v4
+        with:
+          # cache downloaded and installed packages
+          path: |
+            ~/.cache/pip
+            ~/.env/lib/${{ env.PYTHON_VERSION }}/site-packages
+            ~/.env/bin
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      # Install Jupyter and any other Python packages defined in requirements.txt
+      #   Virtualenv is necessary to be able to cache packages installed by pip,
+      #   but not standard library Python packages
+      - name: Install Python dependencies
+        working-directory: jupyterlite
+        run: |
+          python -m venv .env
+          source .env/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # Set up and use cache for Jekyll page generation
+      - name: Jekyll rendered pages cache
+        id: jekyll-build-cache
+        uses: actions/cache@v4
+        with:
+          # cache generated pages and assets
+          path: |
+            _site
+          key: jekyll-${{ hashFiles('public/**') }}
+          restore-keys: |
+            jekyll-
+
+      # Build the main part of the site using Jekyll Docker image
+      - name: Build the main site with Jekyll
+        if: steps.jekyll-build-cache.outputs.cache-hit != 'true'
+        working-directory: public
+        run: |
+          docker run \
+          -v ${{ github.workspace }}/public:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
+          -e PAGES_REPO_NWO=$GITHUB_REPOSITORY -e JEKYLL_GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} \
+          jekyll/builder:pages /bin/bash -c \
+          "chmod -R 777 /srv/jekyll && jekyll build --incremental --future"
+
+      # Build the lab part of the site using JupyterLite
+      - name: Build the lab site with JupyterLite
+        working-directory: jupyterlite
+        run: |
+          mkdir -p ../_site/notebooks/
+          source .env/bin/activate
+          jupyter lite build --contents notebooks --output-dir ../_site/notebooks
+
+      # Ready and upload artifact for deployment
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+
+  deploy:
+    needs: build
+
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+
+    # Deploy to the github-pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    # Specify runner + deployment step
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4 # or specific "vX.X.X" version tag for this action
