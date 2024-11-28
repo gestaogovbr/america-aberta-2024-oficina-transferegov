@@ -1,0 +1,14 @@
+title: "América Aberta 2024: Oficina TransfereGov"
+description: "Entendendo as Emendas: onde e como utilizar os dados abertos do TransfereGov"
+markdown: GFM
+commonmark:
+  extensions: ["table", "iframe"]
+remote_theme: pages-themes/leap-day@v0.2.0
+plugins:
+  - jekyll-github-metadata
+  - jekyll-remote-theme
+theme: jekyll-theme-leap-day
+show_downloads: false
+lab:
+  link_url: notebooks
+  link_name: 🧪 Laboratório
