@@ -1,7 +1,8 @@
 # América Aberta: Oficina de dados abertos do TransfereGov
 
-Este repositório contém os materiais para uso na oficina de uso de dados abertos
-do TransfereGov no evento América Aberta 2024.
+Este repositório contém os materiais para uso na
+[oficina de uso de dados abertos do TransfereGov](https://atividades.americaaberta.org/2024/talk/WLJZAC/)
+no evento América Aberta 2024.
 
 ## Conjuntos de dados utilizados
 

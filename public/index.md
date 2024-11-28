@@ -4,8 +4,9 @@ layout: default
 
 # América Aberta: Oficina de dados abertos do TransfereGov
 
-Bem vindo ao laboratório da oficina de dados abertos do TransfereGov no
-evento [America Aberta 2024](https://americaaberta.org/).
+Bem vindo ao laboratório da
+[oficina de dados abertos do TransfereGov](https://atividades.americaaberta.org/2024/talk/WLJZAC/)
+no evento [America Aberta 2024](https://americaaberta.org/).
 
 Nessa oficina, será mostrado como os dados abertos da API TransfereGov
 podem ser utilizados para analisar os dados das emendas individuais dos
