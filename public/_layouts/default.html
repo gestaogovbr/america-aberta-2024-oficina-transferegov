@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+{% seo %}
+    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+    <script src="https://code.jquery.com/jquery-3.3.0.min.js" integrity="sha256-RTQy8VOmNlT6b2PIRur37p6JEBZUE7o8wPgMvu18MC4=" crossorigin="anonymous"></script>
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+    <!--[if lt IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" integrity="sha256-3Jy/GbSLrg0o9y5Z5n1uw0qxZECH7C6OQpVBgNFYa0g=" crossorigin="anonymous"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    {% include head-custom.html %}
+    <style type="text/css">
+      #banner .fork {
+        position: relative;
+        left: 81%;
+      }
+    </style>
+  </head>
+  <body>
+
+      <header>
+        <h1>{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
+        <p>{{ page.description | default: site.description | default: site.github.project_tagline }}</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="{{ site.video.link_url }}" target="_blank" class="button fork"><strong>{{ site.video.link_name }}</strong></a>
+        <a href="{{ site.lab.link_url }}" target="_blank" class="button fork"><strong>{{ site.lab.link_name }}</strong></a>
+          <div class="downloads">
+            <ul>
+              <li><a href="{{ site.github.repository_url }}" target="_blank" class="button"><strong>Ver no GitHub</strong></a></li>
+            </ul>
+          </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        {{ content }}
+        <iframe title="Open Data Day: Open Datasets SEGES 2024" width="560" height="315" src="https://fediverse.tv/videos/embed/9370e6c1-8ccc-43f9-98b4-e0bf4dcd1dc2" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
+      </section>
+      <footer>
+        {% if site.github.is_project_page %}
+          <p>Projeto mantido por <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a></p>
+        {% endif %}
+        <p><small>Hospedado no GitHub Pages &mdash; Tema por <a href="https://twitter.com/mattgraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+  </body>
+</html>
