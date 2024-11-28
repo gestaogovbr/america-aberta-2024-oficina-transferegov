@@ -1,14 +1,14 @@
 # Core modules (mandatory)
-jupyterlite-core==0.2.3
-jupyterlab~=4.0.11
+jupyterlite-core==0.4.4
+jupyterlab~=4.3.1
 notebook~=7.0.7
 
 
 # Python kernel (optional)
-jupyterlite-pyodide-kernel==0.2.3
+jupyterlite-pyodide-kernel==0.4.4
 
 # JavaScript kernel (optional)
-jupyterlite-javascript-kernel==0.2.3
+jupyterlite-javascript-kernel==0.3.0
 
 # Language support (optional)
 jupyterlab-language-pack-fr-FR
@@ -44,9 +44,12 @@ ipycanvas>=0.9.1
 # Python: ipyleaflet library for Jupyter notebooks (optional)
 ipyleaflet
 
+# For handling parquet files
+fastparquet==2024.11.0
+
 # Python: plotting libraries (optional)
 plotly>=5,<6
 bqplot
 
-# Frictionless data (data packages, table schemas, etc.)
-frictionless>=5,<6
+# Progress bar with tqdm
+tqdm==4.67.1
