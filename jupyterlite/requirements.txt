@@ -45,7 +45,7 @@ ipycanvas>=0.9.1
 ipyleaflet
 
 # For handling parquet files
-fastparquet==2024.11.0
+pyarrow~=18.1
 
 # Python: plotting libraries (optional)
 plotly>=5,<6
